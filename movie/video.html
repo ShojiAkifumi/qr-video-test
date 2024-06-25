@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>動画撮影</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <p>ビデオレコーダー</p>
+    <div id="message">⌛ Loading video...</div>
+    <video id="video" width="640px" height="480px" autoplay muted></video>
+    <p>
+        <button id="startBtn">撮影</button>
+        <button id="stopBtn" disabled>停止</button>
+    </p>
+    <video id="recordedVideo" width="640px" height="480px" controls hidden></video>
+</body>
+<script src="./js/script.js"></script>
+</html>

@@ -1,0 +1,39 @@
+body{
+    width:100vw;
+    overflow-x: hidden;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin:0;
+    position: relative;
+}
+li{
+    margin-bottom: 1.5em;
+}
+a.btn{
+    display: block;
+    width:min(300px, 95%);
+    background-color: #156082;
+    color:#fff;
+    padding:1em;
+    text-align: center;
+    text-decoration: none;
+    margin:0 auto 2em;
+}
+#message {
+    text-align: center;
+    border-radius: 10px;
+    padding: 40px;
+    background-color: #eee;
+    width:min(95%, 400px);
+}
+
+#canvas {
+    width: min(400px,95%);
+}
+
+video{
+    max-width:100%;
+}
