@@ -14,7 +14,14 @@
         <button id="startBtn">撮影</button>
         <button id="stopBtn" disabled>停止</button>
     </p>
-    <video id="recordedVideo" width="640px" height="480px" controls playsinline hidden></video>
+    <video id="recordedVideo" width="640px" height="480px"
+        controls = "true"
+        muted = "true"
+        playsinline = "true"
+        hidden = "true"
+        ontrolsList="nodownload"
+        oncontextmenu="return false;"
+    ></video>
 </body>
 <script src="./js/script.js"></script>
 </html>
