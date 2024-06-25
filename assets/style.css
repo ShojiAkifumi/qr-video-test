@@ -12,16 +12,6 @@ body{
 li{
     margin-bottom: 1.5em;
 }
-a.btn{
-    display: block;
-    width:min(300px, 95%);
-    background-color: #156082;
-    color:#fff;
-    padding:1em;
-    text-align: center;
-    text-decoration: none;
-    margin:0 auto 2em;
-}
 #message {
     text-align: center;
     border-radius: 10px;

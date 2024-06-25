@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,23 @@
     <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
-    <a href="./video.html" class="btn">動画撮影ボタン</a>
+    <p>ビデオレコーダー</p>
+    <div id="message">⌛ Loading video...</div>
+    <video id="video" width="640px" height="480px" autoplay muted playsinline></video>
+    <p>
+        <button id="startBtn">撮影</button>
+        <button id="stopBtn" disabled>停止</button>
+        <button id="toggleCameraBtn">カメラ切り替え</button>
+    </p>
+    <video id="recordedVideo" width="640px" height="480px"
+        controls = "true"
+        muted = "true"
+        playsinline = "true"
+        hidden = "true"
+        ontrolsList="nodownload"
+        oncontextmenu="return false;"
+    ></video>
 </body>
+<script src="./js/ffmpeg.min.js"></script>
+<script src="./js/script.js"></script>
 </html>
