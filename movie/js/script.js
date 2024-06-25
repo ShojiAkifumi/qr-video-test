@@ -29,6 +29,7 @@ navigator.mediaDevices.getUserMedia({
 .then(stream => {
     message.hidden = true;
     video.srcObject = stream;
+    video.muted = true;
 
     // MediaRecorderを初期化
     mediaRecorder = new MediaRecorder(stream);
@@ -47,7 +48,6 @@ navigator.mediaDevices.getUserMedia({
         const mp4Blob = await convertToMP4(webmBlob);
         const url = URL.createObjectURL(mp4Blob);
         recordedVideo.src = url;
-        recordedVideo.src = url;
     };
 })
 .catch(error => {
@@ -57,16 +57,18 @@ navigator.mediaDevices.getUserMedia({
 
 // 録画開始
 startBtn.addEventListener('click', () => {
-    mediaRecorder.start();
-    startBtn.disabled = true;
-    stopBtn.disabled = false;
-    recordedVideo.hidden = true;
+    if (mediaRecorder && mediaRecorder.state === 'inactive') {
+        mediaRecorder.start();
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+    }
 });
 
 // 録画停止
 stopBtn.addEventListener('click', () => {
-    mediaRecorder.stop();
-    startBtn.disabled = false;
-    stopBtn.disabled = true;
-    recordedVideo.hidden = false;
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+    }
 });
