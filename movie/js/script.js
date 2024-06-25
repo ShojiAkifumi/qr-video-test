@@ -7,6 +7,18 @@ const recordedVideo = document.getElementById('recordedVideo');
 let mediaRecorder;
 let recordedChunks = [];
 
+const { createFFmpeg, fetchFile } = FFmpeg;
+const ffmpeg = createFFmpeg({ log: true });
+
+async function convertToMP4(webmBlob) {
+    await ffmpeg.load();
+    ffmpeg.FS('writeFile', 'input.webm', await fetchFile(webmBlob));
+    await ffmpeg.run('-i', 'input.webm', 'output.mp4');
+    const data = ffmpeg.FS('readFile', 'output.mp4');
+    const mp4Blob = new Blob([data.buffer], { type: 'video/mp4' });
+    return mp4Blob;
+}
+
 // カメラストリームを取得してビデオ要素に表示する
 navigator.mediaDevices.getUserMedia({
     video: {
@@ -29,10 +41,12 @@ navigator.mediaDevices.getUserMedia({
     };
 
     // 録画が停止したときにビデオを再生可能にする
-    mediaRecorder.onstop = () => {
-        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+    mediaRecorder.onstop = async () => {
+        const webmBlob = new Blob(recordedChunks, { type: 'video/webm' });
         recordedChunks = [];
-        const url = URL.createObjectURL(blob);
+        const mp4Blob = await convertToMP4(webmBlob);
+        const url = URL.createObjectURL(mp4Blob);
+        recordedVideo.src = url;
         recordedVideo.src = url;
     };
 })
